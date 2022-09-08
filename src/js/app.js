@@ -1,4 +1,4 @@
-import axios from './axios'
+// import axios from './axios'
 
 // Module with Babel tranformation
 // import SimpleLightbox from "simplelightbox";
