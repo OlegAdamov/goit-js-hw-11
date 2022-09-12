@@ -7,24 +7,35 @@ import axios from 'axios';
 export default class ImagesApiContainer {
     constructor() {
         this.searchFoto = '';
+        this.page = 1;
      }
 
 fetchImages() {
-    axios.get(`${BASE_URL}?key=${API_KEY}&q=${this.searchFoto}&page=1&per_page=10&lang=en,ua,ru&image_type=photo&orientation=horizontal&safesearch=true;`)
-            .then(r => r.json())
-        .then(console.log)
+
+    return axios.get(`${BASE_URL}?key=${API_KEY}&q=${this.searchFoto}&page=${this.page}&per_page=10&lang=en,ua,ru&image_type=photo&orientation=horizontal&safesearch=true;`)
+
+    .then(function (response) {
+        return response.data;
+    })
+        .then(hits => {
+            this.incrementPage()
+            return hits.hits;
+        })
+    .catch(function (error) {
+        if (error.response) {
+            console.log(error.response)
+        };
+    });
     }
 
-    // .then(function (response) {
-    //     console.log(response.data.hits);
-    //     return response.data.hits;
-    // })
-    // .catch(function (error) {
-    //     if (error.response) {
-    //         console.log(error.response)
-    //     };
-    // });
-    // }
+    incrementPage() {
+        this.page += 1;
+    }
+    
+    resetPage() {
+        this.page = 1;
+    }
+
     get foto() {
     return this.searchFoto;
 }

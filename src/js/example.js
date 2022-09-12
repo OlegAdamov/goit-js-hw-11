@@ -5,12 +5,12 @@ import Notiflix from 'notiflix';
 // import axios from 'axios';
 // import FetchImages from "./fetchImages";
 import ImagesApiContainer from './fetchImages'
-
+import { createImageList } from "./createImageList";
 
 const searchForm = document.querySelector("#search-form");
 const inputForm = document.querySelector('[name="searchQuery"]');
 const submitBtn = document.querySelector('[type="submit"]');
-const gallery = document.querySelector(".gallery");
+const gallery = document.querySelector('.gallery');
 const loadMoreBtn = document.querySelector('.load-more');
 
 const imagesApiContainer = new ImagesApiContainer();
@@ -25,9 +25,13 @@ loadMoreBtn.addEventListener('click', onLoadMore);
 function onSearch(event) {
     event.preventDefault();
 
-
     imagesApiContainer.foto = event.currentTarget.searchQuery.value;
-    imagesApiContainer.fetchImages(searchFoto);
+    imagesApiContainer.resetPage();
+    imagesApiContainer.fetchImages().then(images => {
+        clearGallery();
+        renderGallery(images);
+    });
+
 
     // resetMarkup();
     // fetchImages(searchFoto)
@@ -45,42 +49,17 @@ function onSearch(event) {
 };
 
     function onLoadMore() {
-        imagesApiContainer.fetchImages(searchFoto);
+        imagesApiContainer.fetchImages().then(renderGallery);
 
     
     
 };
 
-// function renderGallery(foto) {
-//     const list = createImageList(foto);
-//     gallery.innerHTML = list;
-// };
+function renderGallery(hits) {
+    gallery.insertAdjacentHTML('beforeend', createImageList(hits));
+};
     
-// function createImageList(foto) {
-//     return foto.map(({ webformatURL, tags, likes, views, comments, downloads }) => 
-//     `<div class="photo-card">
-//   <img src="${webformatURL}" alt="${tags}" loading="lazy" />
-//   <div class="info">
-//     <p class="info-item">
-//       <b>Likes: ${likes}</b>
-//     </p>
-//     <p class="info-item">
-//       <b>Views: ${views}</b>
-//     </p>
-//     <p class="info-item">
-//       <b>Comments: ${comments}</b>
-//     </p>
-//     <p class="info-item">
-//       <b>Downloads: ${downloads}</b>
-//     </p>
-//   </div>
-// </div>`
-//     )
-//     .join("")
-// };
+function clearGallery() {
+    gallery.innerHTML = '';
+}
 
-
-
-// function resetMarkup() {
-//     gallery.innerHTML = '';
-// };
