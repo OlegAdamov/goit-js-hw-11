@@ -1,7 +1,10 @@
+<main>
+
+
 
 <form class="search-form" id="search-form">
-  <input type="text" name="searchQuery" autocomplete="off" placeholder="Search images..." />
-  <button type="submit">Search</button>
+  <input type="text" class="search-input" name="searchQuery" autocomplete="off" placeholder="Search images..." />
+  <button type="submit" class="search-btn">Search</button>
 </form>
 
 <div class="gallery">
@@ -9,22 +12,16 @@
 </div>
 
 
-<!-- <div class="photo-card">
-  <img src="" alt="" loading="lazy" />
-  <div class="info">
-    <p class="info-item">
-      <b>Likes</b>
-    </p>
-    <p class="info-item">
-      <b>Views</b>
-    </p>
-    <p class="info-item">
-      <b>Comments</b>
-    </p>
-    <p class="info-item">
-      <b>Downloads</b>
-    </p>
-  </div>
-</div> -->
 
-<button type="button" class="load-more">Load more</button>
+
+<button type="button" class="load-more">
+  <span class="spinner-border spinner-border-sm spinner is-hidden" role="status" aria-hidden="true">
+  </span>Load more</button>
+
+
+
+</main>
+
+
+    <script type="module" src="./js/example.js"></script>
+    <!-- <script type="module" src="./js/fetchImages.js"></script> -->
