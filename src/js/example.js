@@ -25,7 +25,10 @@ loadMoreBtn.addEventListener('click', onLoadMore);
 function onSearch(event) {
     event.preventDefault();
 
-    imagesApiContainer.foto = event.currentTarget.searchQuery.value;
+    imagesApiContainer.foto = event.currentTarget.searchQuery.value.trim();
+
+    
+
     imagesApiContainer.resetPage();
     imagesApiContainer.fetchImages().then(images => {
         clearGallery();
