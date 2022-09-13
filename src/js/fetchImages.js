@@ -15,6 +15,7 @@ fetchImages() {
     return axios.get(`${BASE_URL}?key=${API_KEY}&q=${this.searchFoto}&page=${this.page}&per_page=10&lang=en,ua,ru&image_type=photo&orientation=horizontal&safesearch=true;`)
 
     .then(function (response) {
+        console.log('ImagesApiContainer ~ respons: ', response)
         return response.data;
     })
         .then(hits => {
