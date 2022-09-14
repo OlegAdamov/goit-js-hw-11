@@ -34,9 +34,10 @@ function onSearch(event) {
     else {
         loadMoreBtn.show();
         imagesApiContainer.resetPage();
+                console.log(this.hits.totalHits);
         // console.log('ImagesApiContainer: ', imagesApiContainer.data)
         fetchImages();
-        // Notiflix.Notify.success(`Hooray! We found ${images.totalHits} images.`);
+        Notiflix.Notify.success(`Hooray! We found HEPL images.`);
         clearGallery();
 }
     //         // Notiflix.Notify.warning("Sorry, there are no images matching your search query. Please try again.")
