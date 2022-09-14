@@ -11,7 +11,7 @@ const submitBtn = document.querySelector('[type="submit"]');
 const gallery = document.querySelector('.gallery');
 // const loadMoreBtn = document.querySelector('[data-action="load-more"]');
 
-// let gallerySimpleLightbox = new SimpleLightbox('.gallery a');
+let gallerySimpleLightbox = new SimpleLightbox('.gallery a');
 
 const imagesApiContainer = new ImagesApiContainer();
 const loadMoreBtn = new LoadMoreBtn({ 
