@@ -11,6 +11,8 @@ const submitBtn = document.querySelector('[type="submit"]');
 const gallery = document.querySelector('.gallery');
 // const loadMoreBtn = document.querySelector('[data-action="load-more"]');
 
+// let gallerySimpleLightbox = new SimpleLightbox('.gallery a');
+
 const imagesApiContainer = new ImagesApiContainer();
 const loadMoreBtn = new LoadMoreBtn({ 
     selector: '[data-action="load-more"]',
@@ -19,7 +21,6 @@ const loadMoreBtn = new LoadMoreBtn({
 
 searchForm.addEventListener('submit', onSearch);
 loadMoreBtn.refs.button.addEventListener('click', onLoadMore);
-// inputForm.addEventListener('input', (event) => fetchImages.response = event.target.value.trim());
 
 function onSearch(event) {
     event.preventDefault();
@@ -27,11 +28,15 @@ function onSearch(event) {
     if (imagesApiContainer.foto === '') {
         Notiflix.Notify.info("Please, Enter your search query.")
         clearGallery();
-    } else {
+//     } else if (imagesApiContainer.fetchImages.data === {}) {
+// console.log('error')
+    }
+    else {
         loadMoreBtn.show();
         imagesApiContainer.resetPage();
-        Notiflix.Notify.success(`Hooray! We found HELP images.`);
-        fetchImages()
+        // console.log('ImagesApiContainer: ', imagesApiContainer.data)
+        fetchImages();
+        // Notiflix.Notify.success(`Hooray! We found ${images.totalHits} images.`);
         clearGallery();
 }
     //         // Notiflix.Notify.warning("Sorry, there are no images matching your search query. Please try again.")
@@ -41,12 +46,13 @@ function onSearch(event) {
 };
 
 function fetchImages() {
-        loadMoreBtn.disable();
-        imagesApiContainer.fetchImages().then(images => {
+    loadMoreBtn.disable();
+    imagesApiContainer.fetchImages().then(images => {
         renderGallery(images);
         loadMoreBtn.enable();
     });
 }
+
 
 function onLoadMore() {
     fetchImages()
@@ -54,9 +60,11 @@ function onLoadMore() {
 
 function renderGallery(hits) {
     gallery.insertAdjacentHTML('beforeend', createImageList(hits));
+
 };
     
 function clearGallery() {
     gallery.innerHTML = '';
+    loadMoreBtn.disable();
 }
 
