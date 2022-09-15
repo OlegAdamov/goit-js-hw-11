@@ -8,7 +8,7 @@ export default class ImagesApiContainer {
     constructor() {
         this.searchFoto = '';
         this.page = 1;
-        this.per_page = 10;
+        this.per_page = 40;
 
      }
 
@@ -17,11 +17,11 @@ fetchImages() {
     return axios.get(`${BASE_URL}?key=${API_KEY}&q=${this.searchFoto}&page=${this.page}&per_page=${this.per_page}&lang=en,ua,ru&image_type=photo&orientation=horizontal&safesearch=true;`)
 
     .then(function (response) {
-        console.log('ImagesApiContainer: ', response.data.totalHits)
+        // console.log('ImagesApiContainer: ', response.data.totalHits)
         return response.data;
     })
         .then(hits => {
-            // console.log('ImagesApiContainer ~ hits', hits)
+            console.log('ImagesApiContainer ~ hits', hits.totalHits)
             this.incrementPage()
             return hits.hits;
         })

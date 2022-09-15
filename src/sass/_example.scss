@@ -6,7 +6,7 @@
 
 :root {
   --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  --animation-duration: 350ms;
+  --animation-duration: 500ms;
 }
 
 a {
@@ -43,13 +43,14 @@ background-color: yellowgreen;
   border-radius: 8px;
   display: flex;
   align-items: center;
+    transition: background-color var(--animation-duration) var(--timing-function);
 }
 
 .btn-primary {
   font-size: 14px;
   padding: 10px 20px;
-  background-color: #2ecc71;
-  color: brown;
+  background-color: #2ea55f;
+  color: yellow;
   border: none;
   text-transform: uppercase;
   margin: 40px auto;
@@ -68,15 +69,28 @@ background-color: yellowgreen;
   display: none;
 }
 
+.search-btn:hover,
+.search-btn:focus {
+  background-color: rgb(18, 18, 161);
+}
+
+
+.btn-primary:hover, 
+.btn-primary:focus {
+  background-color: rgb(16, 124, 16);
+}
 
 
 .gallery {
   display: flex;
   align-items: center;
+  // max-width: 1140px;
   justify-content: center;
   flex-wrap: wrap;
   list-style: none;
   margin: -15px;
+    margin-left: auto;
+      margin-right: auto;
 }
 
 .gallery li {

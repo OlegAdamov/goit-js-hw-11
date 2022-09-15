@@ -19,8 +19,9 @@ function createImageList(hits) {
             <b>Downloads: ${downloads}</b>
             </p>
         </div>
+        </a>
 </div>
-</a></li>`
+</li>`
     )
     .join("")
 };
