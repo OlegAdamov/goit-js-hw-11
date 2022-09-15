@@ -47,7 +47,7 @@ fetchImages() {
 set foto(newFoto) {
     this.searchFoto = newFoto;
 }
-}
+};
 
 // console.log('fetchImages', fetchImages("cat"))
 

@@ -11,7 +11,7 @@ const submitBtn = document.querySelector('[type="submit"]');
 const gallery = document.querySelector('.gallery');
 
 const imagesApiContainer = new ImagesApiContainer();
-let simpleLightbox = new SimpleLightbox('.gallery a', {});;
+let simpleLightbox = new SimpleLightbox('.gallery a', {});
 let loadMoreBtn = new LoadMoreBtn({ 
     selector: '[data-action="load-more"]',
     hidden: true,
@@ -50,7 +50,7 @@ function fetchImages() {
         renderGallery(images);
         loadMoreBtn.enable();
     });
-}
+};
 
 function onLoadMore() {
     simpleLightBox.destroy();
@@ -59,11 +59,11 @@ function onLoadMore() {
 
 function renderGallery(hits) {
     gallery.insertAdjacentHTML('beforeend', createImageList(hits));
-    console.log('renderGallery ~ hits', this.totalHits);
+    // console.log('renderGallery ~ hits', this.totalHits);
 simpleLightBox = new SimpleLightbox('.gallery a').refresh();
 };
     
 function clearGallery() {
     gallery.innerHTML = '';
-}
+};
 
