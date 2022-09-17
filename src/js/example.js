@@ -44,11 +44,11 @@ function onSearch(event) {
         loadMoreBtn.show();
         imagesApiContainer.resetPage();
         fetchImages();
+        setTimeout(() => {
+            Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
+        }, 500);
         simpleLightBox = new SimpleLightbox('.gallery a').refresh();
-  setTimeout(() => {
-    Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
-  }, 500);
-    clearGallery();
+        clearGallery();
 } 
     //   Notiflix.Notify.failure('Oops, there is no category with that');
     //   Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.")
@@ -64,7 +64,7 @@ function onLoadMore() {
 
 function renderGallery(hits) {
     gallery.insertAdjacentHTML('beforeend', createImageList(hits.hits));
-simpleLightBox = new SimpleLightbox('.gallery a').refresh();
+    simpleLightBox = new SimpleLightbox('.gallery a').refresh();
 };
     
 function clearGallery() {
