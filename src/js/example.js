@@ -35,12 +35,8 @@ function onSearch(event) {
         Notiflix.Notify.info("Please, Enter your search query.")
         clearGallery();
     loadMoreBtn.hide();
-
-    // } else if (imagesApiContainer.hits === {}) {
-    //   Notiflix.Notify.warning("Sorry, there are no images matching your search query. Please try again.")
-        
     }
-    else {
+    else  {
         loadMoreBtn.show();
         imagesApiContainer.resetPage();
         fetchImages();
@@ -49,10 +45,12 @@ function onSearch(event) {
         }, 500);
         simpleLightBox = new SimpleLightbox('.gallery a').refresh();
         clearGallery();
-} 
+// } else {
+//       Notiflix.Notify.warning("Sorry, there are no images matching your search query. Please try again.")
+
     //   Notiflix.Notify.failure('Oops, there is no category with that');
     //   Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.")
-
+}
 };
 
 
