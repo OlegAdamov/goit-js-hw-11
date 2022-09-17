@@ -23,7 +23,7 @@ fetchImages() {
         .then(hits => {
             console.log('ImagesApiContainer ~ hits', hits.totalHits)
             this.incrementPage()
-            return hits.hits;
+            return hits;
         })
     .catch(function (error) {
         if (error.response) {

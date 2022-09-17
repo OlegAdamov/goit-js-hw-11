@@ -18,6 +18,7 @@ let loadMoreBtn = new LoadMoreBtn({
 });
 searchForm.addEventListener('submit', onSearch);
 loadMoreBtn.refs.button.addEventListener('click', onLoadMore);
+// let totalHits = ''
 
 function onSearch(event) {
     event.preventDefault();
@@ -35,8 +36,13 @@ function onSearch(event) {
         loadMoreBtn.show();
         imagesApiContainer.resetPage();
         fetchImages();
+//   setTimeout(() => {
+    Notiflix.Notify.success(`Hooray! We found ${images.totalHits} images.`);
+//   }, 200);
+        
+
         simpleLightBox = new SimpleLightbox('.gallery a').refresh();
-        Notiflix.Notify.success(`Hooray! We found some images.`);
+    
         clearGallery();
 } 
     //   Notiflix.Notify.failure('Oops, there is no category with that');
@@ -49,6 +55,7 @@ function fetchImages() {
    imagesApiContainer.fetchImages().then(images => {
         renderGallery(images);
         loadMoreBtn.enable();
+    //    return totalHits = images.totalHits;
     });
 };
 
@@ -58,8 +65,7 @@ function onLoadMore() {
 };
 
 function renderGallery(hits) {
-    gallery.insertAdjacentHTML('beforeend', createImageList(hits));
-    // console.log('renderGallery ~ hits', this.totalHits);
+    gallery.insertAdjacentHTML('beforeend', createImageList(hits.hits));
 simpleLightBox = new SimpleLightbox('.gallery a').refresh();
 };
     
