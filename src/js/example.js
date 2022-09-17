@@ -18,7 +18,15 @@ let loadMoreBtn = new LoadMoreBtn({
 });
 searchForm.addEventListener('submit', onSearch);
 loadMoreBtn.refs.button.addEventListener('click', onLoadMore);
-// let totalHits = ''
+let totalHits = ''
+const fetchImages = () => {
+    loadMoreBtn.disable();
+   imagesApiContainer.fetchImages().then(images => {
+        renderGallery(images);
+        loadMoreBtn.enable();
+       return totalHits = images.totalHits;
+    });
+};
 
 function onSearch(event) {
     event.preventDefault();
@@ -36,28 +44,18 @@ function onSearch(event) {
         loadMoreBtn.show();
         imagesApiContainer.resetPage();
         fetchImages();
-//   setTimeout(() => {
-    Notiflix.Notify.success(`Hooray! We found ${images.totalHits} images.`);
-//   }, 200);
-        
-
         simpleLightBox = new SimpleLightbox('.gallery a').refresh();
-    
-        clearGallery();
+  setTimeout(() => {
+    Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
+  }, 500);
+    clearGallery();
 } 
     //   Notiflix.Notify.failure('Oops, there is no category with that');
     //   Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.")
 
 };
 
-function fetchImages() {
-    loadMoreBtn.disable();
-   imagesApiContainer.fetchImages().then(images => {
-        renderGallery(images);
-        loadMoreBtn.enable();
-    //    return totalHits = images.totalHits;
-    });
-};
+
 
 function onLoadMore() {
     simpleLightBox.destroy();

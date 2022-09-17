@@ -1,6 +1,6 @@
 
 function createImageList(hits) {
-    return hits.map(({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) => 
+    return hits.map(({ webformatURL, largeImageURL, tags, likes, views, comments, downloads, totalHits }) => 
     `<li>
         <div class="photo-card">
         <a class="gallery__link" href="${largeImageURL}">
