@@ -20,12 +20,12 @@ fetchImages() {
     //     if (!response.ok) {
     //   throw new Error(response.status);
     // }
-        console.log('ImagesApiContainer: ', response.data.totalHits)
+        // console.log('ImagesApiContainer: ', response.data.totalHits)
         return response.data;
     })
         .then(hits => {
             this.incrementPage()
-            console.log('ImagesApiContainer ~ hits', hits.totalHits)
+            // console.log('ImagesApiContainer ~ hits', hits.totalHits)
             return hits;
         })
     .catch(function (error) {

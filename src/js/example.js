@@ -44,31 +44,39 @@ function onSearch(event) {
     
     setTimeout(() => {
         if (`${totalHits}` === `0`) {
-        Notiflix.Notify.warning("Sorry, there are no images matching your search query. Please try again.")
+        Notiflix.Notify.failure("Sorry, there are no images matching your search query. Please try again.")
         clearGallery();
         loadMoreBtn.hide();
     } else {
         Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
         simpleLightBox = new SimpleLightbox('.gallery a').refresh();
         };
-    }, 500)
+    }, 300)
     } else {
         Notiflix.Notify.info("Please, Enter your search query.")
         clearGallery();
           loadMoreBtn.hide();
+        };
+        
+        
+        
     };
-   
-   
-        //
-    //   Notiflix.Notify.failure('Oops, there is no category with that');
-    //   Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.")
-};
-
-
-
+    
+    
 function onLoadMore() {
-    simpleLightBox.destroy();
     fetchImages();
+    setTimeout(() => {
+            if (gallery.childNodes.length >= totalHits) {
+            Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.")
+                loadMoreBtn.hide();    
+                    simpleLightBox = new SimpleLightbox('.gallery a').refresh();
+
+    }
+ simpleLightBox.destroy();
+  
+        console.log(`li: `, gallery.childNodes.length)
+                    console.log(`totalHits: `, totalHits)
+    }, 300)
 };
 
 function renderGallery(hits) {
