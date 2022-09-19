@@ -1,4 +1,3 @@
-
 function createImageList(hits) {
     return hits.map(({ webformatURL, largeImageURL, tags, likes, views, comments, downloads, totalHits }) => 
     `<li>

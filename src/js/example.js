@@ -18,42 +18,50 @@ let loadMoreBtn = new LoadMoreBtn({
 });
 searchForm.addEventListener('submit', onSearch);
 loadMoreBtn.refs.button.addEventListener('click', onLoadMore);
+
 let totalHits = ''
-const fetchImages = () => {
-    loadMoreBtn.disable();
-   imagesApiContainer.fetchImages().then(images => {
-        renderGallery(images);
-        loadMoreBtn.enable();
-       return totalHits = images.totalHits;
-    });
-};
+
+    function fetchImages() {
+        loadMoreBtn.disable();
+
+           imagesApiContainer.fetchImages().then(images => {
+               renderGallery(images);
+               loadMoreBtn.enable();
+               return totalHits = images.totalHits;
+            }); 
+}   
+
 
 function onSearch(event) {
     event.preventDefault();
     imagesApiContainer.foto = event.currentTarget.searchQuery.value.trim();
-    if (imagesApiContainer.foto === '') {
-        Notiflix.Notify.info("Please, Enter your search query.")
-        clearGallery();
-        loadMoreBtn.hide();
-
-    }
-    else if (`${totalHits}` > 0) {
         loadMoreBtn.show();
-        imagesApiContainer.resetPage();
-        fetchImages();
-        setTimeout(() => {
-            Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
-        }, 500);
-        simpleLightBox = new SimpleLightbox('.gallery a').refresh();
-        clearGallery();
 
-    } else {
+    if (imagesApiContainer.foto !== '') {
+        imagesApiContainer.resetPage();
+        clearGallery();
+        fetchImages();
+    
+    setTimeout(() => {
+        if (`${totalHits}` === `0`) {
         Notiflix.Notify.warning("Sorry, there are no images matching your search query. Please try again.")
         clearGallery();
-        loadMoreBtn.hide();    
+        loadMoreBtn.hide();
+    } else {
+        Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
+        simpleLightBox = new SimpleLightbox('.gallery a').refresh();
+        };
+    }, 500)
+    } else {
+        Notiflix.Notify.info("Please, Enter your search query.")
+        clearGallery();
+          loadMoreBtn.hide();
+    };
+   
+   
+        //
     //   Notiflix.Notify.failure('Oops, there is no category with that');
     //   Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.")
-}
 };
 
 
@@ -71,4 +79,6 @@ function renderGallery(hits) {
 function clearGallery() {
     gallery.innerHTML = '';
 };
+
+
 
