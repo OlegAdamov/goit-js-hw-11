@@ -49,7 +49,7 @@ function onSearch(event) {
         loadMoreBtn.hide();
     } else {
         Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
-        simpleLightBox = new SimpleLightbox('.gallery a').refresh();
+        // simpleLightBox = new SimpleLightbox('.gallery a').refresh();
         };
     }, 300)
     } else {
@@ -57,9 +57,6 @@ function onSearch(event) {
         clearGallery();
           loadMoreBtn.hide();
         };
-        
-        
-        
     };
     
     
@@ -72,10 +69,9 @@ function onLoadMore() {
                     simpleLightBox = new SimpleLightbox('.gallery a').refresh();
 
     }
- simpleLightBox.destroy();
-  
-        console.log(`li: `, gallery.childNodes.length)
-                    console.log(`totalHits: `, totalHits)
+    simpleLightBox.destroy();
+    // console.log(`li: `, gallery.childNodes.length)
+    // console.log(`totalHits: `, totalHits)
     }, 300)
 };
 
