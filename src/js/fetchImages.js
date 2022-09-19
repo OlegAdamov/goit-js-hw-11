@@ -9,7 +9,6 @@ export default class ImagesApiContainer {
         this.searchFoto = '';
         this.page = 1;
         this.per_page = 40;
-
      }
 
 fetchImages() {

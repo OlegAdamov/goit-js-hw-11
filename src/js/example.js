@@ -21,16 +21,14 @@ loadMoreBtn.refs.button.addEventListener('click', onLoadMore);
 
 let totalHits = ''
 
-    function fetchImages() {
-        loadMoreBtn.disable();
-
-           imagesApiContainer.fetchImages().then(images => {
-               renderGallery(images);
-               loadMoreBtn.enable();
-               return totalHits = images.totalHits;
-            }); 
+function fetchImages() {
+    loadMoreBtn.disable();
+        imagesApiContainer.fetchImages().then(images => {
+            renderGallery(images);
+            loadMoreBtn.enable();
+            return totalHits = images.totalHits;
+        }); 
 }   
-
 
 function onSearch(event) {
     event.preventDefault();
