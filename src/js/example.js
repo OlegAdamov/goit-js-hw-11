@@ -68,8 +68,7 @@ function onLoadMore() {
 
     }
     simpleLightBox.destroy();
-    // console.log(`li: `, gallery.childNodes.length)
-    // console.log(`totalHits: `, totalHits)
+
     }, 300)
 };
 
