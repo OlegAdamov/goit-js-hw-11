@@ -38,7 +38,7 @@ function onSearch(event) {
     if (imagesApiContainer.foto !== '') {
         imagesApiContainer.resetPage();
         clearGallery();
-        fetchImages();
+    fetchImages();
     
     setTimeout(() => {
         if (`${totalHits}` === `0`) {
