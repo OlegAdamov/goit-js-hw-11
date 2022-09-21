@@ -66,7 +66,7 @@ function onLoadMore() {
                 loadMoreBtn.hide();
                 simpleLightBox.refresh();
     }
-    simpleLightBox.refresh();
+    simpleLightBox = new SimpleLightbox('.gallery a').refresh();
 
     }, 1000)
 };
