@@ -47,7 +47,7 @@ function onSearch(event) {
         loadMoreBtn.hide();
     } else {
         Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
-        simpleLightBox = new SimpleLightbox('.gallery a');
+        simpleLightBox = new SimpleLightbox('.gallery a').refresh();
         };
     }, 1000)
     } else {
@@ -65,14 +65,14 @@ function onLoadMore() {
             Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.")
                 loadMoreBtn.hide();
     }
-    simpleLightBox.refresh();
+    simpleLightBox = new SimpleLightbox('.gallery a').refresh();
 
     }, 1000)
 };
 
 function renderGallery(hits) {
     gallery.insertAdjacentHTML('beforeend', createImageList(hits.hits));
-        simpleLightBox.refresh();
+        simpleLightBox = new SimpleLightbox('.gallery a').refresh();
 
 };
     
