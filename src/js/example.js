@@ -47,7 +47,7 @@ function onSearch(event) {
         loadMoreBtn.hide();
     } else {
         Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
-        simpleLightBox = new SimpleLightbox('.gallery a').refresh();
+        simpleLightBox = new SimpleLightbox('.gallery a');
         };
     }, 1000)
     } else {
@@ -65,7 +65,7 @@ function onLoadMore() {
             Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.")
                 loadMoreBtn.hide();
     }
-    simpleLightBox = new SimpleLightbox('.gallery a').refresh();
+    simpleLightBox.refresh();
 
     }, 1000)
 };
