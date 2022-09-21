@@ -72,6 +72,8 @@ function onLoadMore() {
 
 function renderGallery(hits) {
     gallery.insertAdjacentHTML('beforeend', createImageList(hits.hits));
+        simpleLightBox.refresh();
+
 };
     
 function clearGallery() {
