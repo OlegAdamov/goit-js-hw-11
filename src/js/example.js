@@ -49,7 +49,7 @@ function onSearch(event) {
         Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
         simpleLightBox = new SimpleLightbox('.gallery a').refresh();
         };
-    }, 250)
+    }, 1000)
     } else {
         Notiflix.Notify.info("Please, Enter your search query.")
         clearGallery();
@@ -64,10 +64,11 @@ function onLoadMore() {
             if (gallery.childNodes.length >= totalHits) {
             Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.")
                 loadMoreBtn.hide();
+                simpleLightBox.refresh();
     }
     simpleLightBox.refresh();
 
-    }, 250)
+    }, 1000)
 };
 
 function renderGallery(hits) {
