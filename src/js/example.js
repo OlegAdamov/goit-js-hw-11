@@ -11,7 +11,7 @@ const submitBtn = document.querySelector('[type="submit"]');
 const gallery = document.querySelector('.gallery');
 
 const imagesApiContainer = new ImagesApiContainer();
-var simpleLightbox = new SimpleLightbox('.gallery a');
+var simpleLightbox;
 let loadMoreBtn = new LoadMoreBtn({ 
     selector: '[data-action="load-more"]',
     hidden: true,
@@ -47,7 +47,7 @@ function onSearch(event) {
         loadMoreBtn.hide();
     } else {
         Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
-        // simpleLightBox();
+        simpleLightBox = new SimpleLightbox('.gallery a').refresh();
         };
     }, 400)
     } else {
@@ -65,14 +65,13 @@ function onLoadMore() {
             Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.")
                 loadMoreBtn.hide();
     }
-    // simpleLightBox.refresh();
+    simpleLightBox.refresh();
 
     }, 400)
 };
 
 function renderGallery(hits) {
     gallery.insertAdjacentHTML('beforeend', createImageList(hits.hits));
-    simpleLightBox.refresh();
 };
     
 function clearGallery() {
