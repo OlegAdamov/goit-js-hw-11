@@ -1,5 +1,3 @@
-// import SimpleLightbox from "simplelightbox";
-// import "simplelightbox/dist/simple-lightbox.min.css";
 import Notiflix from 'notiflix';
 import ImagesApiContainer from './fetchImages'
 import { createImageList } from "./createImageList";
@@ -11,7 +9,6 @@ const submitBtn = document.querySelector('[type="submit"]');
 const gallery = document.querySelector('.gallery');
 
 const imagesApiContainer = new ImagesApiContainer();
-// let simpleLightbox = new SimpleLightbox('.gallery a', {});
 let loadMoreBtn = new LoadMoreBtn({ 
     selector: '[data-action="load-more"]',
     hidden: true,
@@ -47,7 +44,6 @@ function onSearch(event) {
         loadMoreBtn.hide();
     } else {
         Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
-        // simpleLightBox = new SimpleLightbox('.gallery a').refresh();
         };
     }, 400)
     } else {
@@ -64,17 +60,14 @@ function onLoadMore() {
             if (gallery.childNodes.length >= totalHits) {
             Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.")
                 loadMoreBtn.hide();    
-                    // simpleLightBox = new SimpleLightbox('.gallery a').refresh();
 
     }
-    // simpleLightBox.destroy();
 
     }, 400)
 };
 
 function renderGallery(hits) {
     gallery.insertAdjacentHTML('beforeend', createImageList(hits.hits));
-    // simpleLightBox = new SimpleLightbox('.gallery a').refresh();
 };
     
 function clearGallery() {
