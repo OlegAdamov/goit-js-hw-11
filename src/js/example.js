@@ -64,10 +64,10 @@ function onLoadMore() {
             if (gallery.childNodes.length >= totalHits) {
             Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.")
                 loadMoreBtn.hide();    
-                    simpleLightBox = new SimpleLightbox('.gallery a').refresh();
+                    // simpleLightBox = new SimpleLightbox('.gallery a').refresh();
 
     }
-    simpleLightBox.destroy();
+    // simpleLightBox.destroy();
 
     }, 300)
 };
