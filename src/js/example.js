@@ -49,7 +49,7 @@ function onSearch(event) {
         Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
         simpleLightBox = new SimpleLightbox('.gallery a').refresh();
         };
-    }, 400)
+    }, 250)
     } else {
         Notiflix.Notify.info("Please, Enter your search query.")
         clearGallery();
@@ -67,7 +67,7 @@ function onLoadMore() {
     }
     simpleLightBox.refresh();
 
-    }, 400)
+    }, 250)
 };
 
 function renderGallery(hits) {
