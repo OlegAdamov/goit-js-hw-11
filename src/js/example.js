@@ -12,6 +12,8 @@ const gallery = document.querySelector('.gallery');
 
 const imagesApiContainer = new ImagesApiContainer();
 var simpleLightbox;
+simpleLightBox = new SimpleLightbox('.gallery a');
+
 let loadMoreBtn = new LoadMoreBtn({ 
     selector: '[data-action="load-more"]',
     hidden: true,
@@ -45,7 +47,7 @@ function onSearch(event) {
                 loadMoreBtn.hide();
             } else {
                 Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
-                simpleLightBox = new SimpleLightbox('.gallery a').refresh();
+                simpleLightBox.refresh();
         };
         return;
     } else {
@@ -62,12 +64,12 @@ function onLoadMore() {
             if (gallery.childNodes.length >= totalHits) {
             Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.")
                 loadMoreBtn.hide()};
-    simpleLightBox = new SimpleLightbox('.gallery a').refresh();
+    simpleLightBox.refresh();
 };
 
 function renderGallery(hits) {
     gallery.insertAdjacentHTML('beforeend', createImageList(hits.hits));
-        simpleLightBox = new SimpleLightbox('.gallery a').refresh();
+        simpleLightBox.refresh();
 };
     
 function clearGallery() {
