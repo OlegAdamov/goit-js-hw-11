@@ -32,48 +32,40 @@ function fetchImages() {
 
 function onSearch(event) {
     event.preventDefault();
-    imagesApiContainer.foto = event.currentTarget.searchQuery.value.trim();
-        loadMoreBtn.show();
-
-    if (imagesApiContainer.foto !== '') {
-        imagesApiContainer.resetPage();
-        clearGallery();
-    fetchImages();
+    imagesApiContainer.photo = event.currentTarget.searchQuery.value.trim();
     
-    setTimeout(() => {
-        if (`${totalHits}` === `0`) {
-        Notiflix.Notify.failure("Sorry, there are no images matching your search query. Please try again.")
-        clearGallery();
-        loadMoreBtn.hide();
-    } else {
-        Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
-        simpleLightBox = new SimpleLightbox('.gallery a').refresh();
-        };
-    }, 1000)
+    if (imagesApiContainer.photo !== '') {
+                imagesApiContainer.resetPage();
+                clearGallery();
+                loadMoreBtn.show();
+           fetchImages();
+            if (`${totalHits}` === `0`) {
+                Notiflix.Notify.failure("Sorry, there are no images matching your search query. Please try again.")
+                clearGallery();
+                loadMoreBtn.hide();
+            } else {
+                Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
+                simpleLightBox = new SimpleLightbox('.gallery a').refresh();
+                };
     } else {
         Notiflix.Notify.info("Please, Enter your search query.")
         clearGallery();
-        loadMoreBtn.hide();
+        loadMoreBtn.hide()
         };
     };
     
     
 function onLoadMore() {
     fetchImages();
-    setTimeout(() => {
             if (gallery.childNodes.length >= totalHits) {
             Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.")
-                loadMoreBtn.hide();
-    }
+                loadMoreBtn.hide()};
     simpleLightBox = new SimpleLightbox('.gallery a').refresh();
-
-    }, 1000)
 };
 
 function renderGallery(hits) {
     gallery.insertAdjacentHTML('beforeend', createImageList(hits.hits));
         simpleLightBox = new SimpleLightbox('.gallery a').refresh();
-
 };
     
 function clearGallery() {

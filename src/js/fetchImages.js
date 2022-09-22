@@ -6,25 +6,24 @@ import axios from 'axios';
 
 export default class ImagesApiContainer {
     constructor() {
-        this.searchFoto = '';
+        this.searchPhoto = '';
         this.page = 1;
         this.per_page = 40;
      }
 
 fetchImages() {
 
-    return axios.get(`${BASE_URL}?key=${API_KEY}&q=${this.searchFoto}&page=${this.page}&per_page=${this.per_page}&lang=en,ua,ru&image_type=photo&orientation=horizontal&safesearch=true;`)
-
+    return axios.get(`${BASE_URL}?key=${API_KEY}&q=${this.searchPhoto}&page=${this.page}&per_page=${this.per_page}&lang=en,ua,ru&image_type=photo&orientation=horizontal&safesearch=true;`)
         .then(function (response) {
     //     if (!response.ok) {
     //   throw new Error(response.status);
     // }
-        // console.log('ImagesApiContainer: ', response.data.totalHits)
+        console.log('ImagesApiContainer: ', response.data.totalHits)
         return response.data;
     })
         .then(hits => {
             this.incrementPage()
-            // console.log('ImagesApiContainer ~ hits', hits.totalHits)
+            console.log('ImagesApiContainer ~ hits', hits.totalHits)
             return hits;
         })
     .catch(function (error) {
@@ -42,12 +41,12 @@ fetchImages() {
         this.page = 1;
     }
 
-    get foto() {
-    return this.searchFoto;
+    get photo() {
+    return this.searchPhoto;
 }
 
-set foto(newFoto) {
-    this.searchFoto = newFoto;
+set photo(newPhoto) {
+    this.searchPhoto = newPhoto;
 }
 };
 
