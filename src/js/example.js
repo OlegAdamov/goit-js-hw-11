@@ -46,11 +46,13 @@ function onSearch(event) {
             } else {
                 Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
                 simpleLightBox = new SimpleLightbox('.gallery a').refresh();
-                };
+        };
+        return;
     } else {
         Notiflix.Notify.info("Please, Enter your search query.")
         clearGallery();
         loadMoreBtn.hide()
+        return;
         };
     };
     
