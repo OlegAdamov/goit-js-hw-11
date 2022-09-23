@@ -61,12 +61,12 @@ function onSearch(event) {
                         loadMoreBtn.hide();
                         return;
                     } return;
-                } else {
+                } 
                     Notiflix.Notify.failure("Sorry, there are no images matching your search query. Please try again.")
                     clearGallery();
-                    loadMoreBtn.hide();
-                };
-            }, 400);
+                loadMoreBtn.hide();
+                return;
+                }, 400);
         } catch (error) {
             console.error(error);
         };
