@@ -14,10 +14,6 @@ const containerImg = new ImagesApiContainer();
 var simpleLightbox;
 simpleLightbox = new SimpleLightbox('.gallery a');
 
-console.log(`containerImg.searchPhoto: `, containerImg.searchPhoto)
-console.log(`containerImg.page: `, containerImg.page)
-console.log(`containerImg.per_page: `, containerImg.per_page)
-
 let loadMoreBtn = new LoadMoreBtn({ 
     selector: '[data-action="load-more"]',
     hidden: true,
@@ -42,15 +38,12 @@ function onSearch(event) {
     containerImg.photo = event.currentTarget.searchQuery.value.trim();
     
     if (containerImg.photo !== '') {
-        console.log('onSearch ~ containerImg.photo', containerImg.photo)
         try {
             containerImg.resetPage();
             clearGallery();
             
             fetchImages();
             setTimeout(() => {
-                console.log('onSearch ~ totalHits', totalHits)
-                // console.log('onSearch ~ totalHits', result.totalHits)
                 if (totalHits === 0) {
                     Notiflix.Notify.failure("Sorry, there are no images matching your search query. Please try again.")
                     clearGallery();
@@ -78,14 +71,8 @@ function onLoadMore() {
     try {
         fetchImages();
 
-        console.log('onLoadMore ~ containerImg.page: ', containerImg.page)
 
         const totalPages = totalHits / containerImg.per_page;
-
-        console.log('onLoadMore ~ totalHits', totalHits)
-        console.log('onLoadMore ~ containerImg.per_page', containerImg.per_page)
-        console.log('onLoadMore ~ totalPages', totalPages)
-
         if (containerImg.page >= totalPages) {
             Notiflix.Notify.warning("We're sorry, but you've reached the end of search results.")
             loadMoreBtn.hide()
@@ -95,7 +82,6 @@ function onLoadMore() {
    
    catch (error) {
         Notiflix.Notify.failure("Oops, something wrong! Please don't cry!")
-        console.log('onLoadMore ~ failure')
     };
         
 };
