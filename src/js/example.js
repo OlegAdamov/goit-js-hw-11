@@ -57,7 +57,7 @@ async function onSearch(event) {
                     loadMoreBtn.hide();
                 } else {
                     Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
-                    simpleLightBox.refresh();
+                    simpleLightbox.refresh();
                     loadMoreBtn.show();
                     return;
         };
@@ -102,7 +102,7 @@ function onLoadMore() {
 
 function renderGallery(hits) {
     gallery.insertAdjacentHTML('beforeend', createImageList(hits.hits));
-        simpleLightBox.refresh();
+        simpleLightbox.refresh();
 };
     
 function clearGallery() {
