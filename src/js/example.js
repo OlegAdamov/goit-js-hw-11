@@ -12,7 +12,7 @@ const gallery = document.querySelector('.gallery');
 
 const containerImg = new ImagesApiContainer();
 var simpleLightbox;
-simpleLightBox = new SimpleLightbox('.gallery a');
+simpleLightbox = new SimpleLightbox('.gallery a');
 
 console.log(`containerImg.searchPhoto: `, containerImg.searchPhoto)
 console.log(`containerImg.page: `, containerImg.page)
