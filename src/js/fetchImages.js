@@ -8,7 +8,7 @@ export default class ImagesApiContainer {
     constructor() {
         this.searchPhoto = '';
         this.page = 1;
-        this.per_page = 40;
+        this.per_page = 4;
      }
 
 fetchImages() {
@@ -18,12 +18,12 @@ fetchImages() {
     //     if (!response.ok) {
     //   throw new Error(response.status);
     // }
-        console.log('ImagesApiContainer: ', response.data.totalHits)
+        console.log('ImagesApiContainer.response.data.totalHits: ', response.data.totalHits)
         return response.data;
     })
         .then(hits => {
             this.incrementPage()
-            console.log('ImagesApiContainer ~ hits', hits.totalHits)
+            console.log('ImagesApiContainer.hits.totalHits: ', hits.totalHits)
             return hits;
         })
     .catch(function (error) {
