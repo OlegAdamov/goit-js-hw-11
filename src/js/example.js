@@ -37,7 +37,7 @@ function fetchImages() {
         }); 
 }   
 
-async function onSearch(event) {
+function onSearch(event) {
     event.preventDefault();
     containerImg.photo = event.currentTarget.searchQuery.value.trim();
     
@@ -47,10 +47,10 @@ async function onSearch(event) {
             containerImg.resetPage();
             clearGallery();
             
-            await fetchImages();
-
-            console.log('onSearch ~ totalHits', totalHits)
-            // console.log('onSearch ~ totalHits', result.totalHits)
+            fetchImages();
+            setTimeout(() => {
+                console.log('onSearch ~ totalHits', totalHits)
+                // console.log('onSearch ~ totalHits', result.totalHits)
                 if (totalHits === 0) {
                     Notiflix.Notify.info("Sorry, there are no images matching your search query. Please try again.")
                     clearGallery();
@@ -60,7 +60,8 @@ async function onSearch(event) {
                     simpleLightbox.refresh();
                     loadMoreBtn.show();
                     return;
-        };
+                }
+            }, 400);
         } catch (error) {
             console.error(error);
         }
