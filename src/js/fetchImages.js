@@ -18,12 +18,10 @@ fetchImages() {
     //     if (!response.ok) {
     //   throw new Error(response.status);
     // }
-        console.log('ImagesApiContainer.response.data.totalHits: ', response.data.totalHits)
         return response.data;
     })
         .then(hits => {
             this.incrementPage()
-            console.log('ImagesApiContainer.hits.totalHits: ', hits.totalHits)
             return hits;
         })
     .catch(function (error) {
