@@ -15,9 +15,9 @@ fetchImages() {
 
     return axios.get(`${BASE_URL}?key=${API_KEY}&q=${this.searchPhoto}&page=${this.page}&per_page=${this.per_page}&lang=en,ua,ru&image_type=photo&orientation=horizontal&safesearch=true;`)
         .then(function (response) {
-    //     if (!response.ok) {
-    //   throw new Error(response.status);
-    // }
+        if (!response === 200) {
+      throw new Error(response.status);
+    }
         return response.data;
     })
         .then(hits => {
