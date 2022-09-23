@@ -23,6 +23,7 @@ loadMoreBtn.refs.button.addEventListener('click', onLoadMore);
 
 
 let totalHits = ''
+let totalPages;
 
 function fetchImages() {
     loadMoreBtn.disable();
@@ -43,21 +44,27 @@ function onSearch(event) {
             clearGallery();
             
             fetchImages();
+            
             setTimeout(() => {
-                if (totalHits === 0) {
-                    Notiflix.Notify.failure("Sorry, there are no images matching your search query. Please try again.")
-                    clearGallery();
-                    loadMoreBtn.hide();
-                } else {
+                if (totalHits !== 0) {
                     Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
                     simpleLightbox.refresh();
                     loadMoreBtn.show();
-                    return;
-                }
+                    totalPages = totalHits / containerImg.per_page;
+
+                    if (containerImg.page - 1 >= totalPages) {
+                        loadMoreBtn.hide();
+                        return;
+                    } return;
+                } else {
+                    Notiflix.Notify.failure("Sorry, there are no images matching your search query. Please try again.")
+                    clearGallery();
+                    loadMoreBtn.hide();
+                };
             }, 400);
         } catch (error) {
             console.error(error);
-        }
+        };
     } else {
         Notiflix.Notify.info("Please, Enter your search query.")
         clearGallery();
@@ -70,20 +77,15 @@ function onSearch(event) {
 function onLoadMore() {
     try {
         fetchImages();
-
-
-        const totalPages = totalHits / containerImg.per_page;
+        totalPages = totalHits / containerImg.per_page;
         if (containerImg.page >= totalPages) {
             Notiflix.Notify.warning("We're sorry, but you've reached the end of search results.")
             loadMoreBtn.hide()
-        }
-       console.log(`Hello`);
+        };
     }
-   
-   catch (error) {
+        catch (error) {
         Notiflix.Notify.failure("Oops, something wrong! Please don't cry!")
     };
-        
 };
 
 
@@ -95,7 +97,6 @@ function renderGallery(hits) {
 function clearGallery() {
     gallery.innerHTML = '';
 };
-
 
 function smothScroll() {
     const { height: cardHeight } =
