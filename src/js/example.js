@@ -97,6 +97,16 @@ function clearGallery() {
 };
 
 
+function smothScroll() {
+    const { height: cardHeight } =
+        document.querySelector(".gallery--card").firstElementChild.getBoundingClientRect();
+    window.scrollBy({
+    top: cardHeight * 3.9,
+    behavior: "smooth",
+});
+};
+
+
 
 // const { height: cardHeight } = document
 //   .querySelector(".gallery")
