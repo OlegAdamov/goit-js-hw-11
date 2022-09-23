@@ -38,13 +38,18 @@ function onSearch(event) {
     event.preventDefault();
     containerImg.photo = event.currentTarget.searchQuery.value.trim();
     
-    if (containerImg.photo !== '') {
+    if (containerImg.photo === '') {
+        Notiflix.Notify.info("Please, Enter your search query.")
+        clearGallery();
+        loadMoreBtn.hide()
+        return;
+        }
         try {
             containerImg.resetPage();
             clearGallery();
             
             fetchImages();
-            
+
             setTimeout(() => {
                 if (totalHits !== 0) {
                     Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
@@ -64,12 +69,6 @@ function onSearch(event) {
             }, 400);
         } catch (error) {
             console.error(error);
-        };
-    } else {
-        Notiflix.Notify.info("Please, Enter your search query.")
-        clearGallery();
-        loadMoreBtn.hide()
-        return;
         };
     };
     

@@ -18,9 +18,13 @@ a {
 .search-form {
   width: 60px;
   display: flex;
-  margin: 40px auto;
+  margin: 30px auto;
 justify-content: center;
-background-color: yellowgreen;
+color: yellowgreen;
+// position: fixed;
+// top: 0;
+// left: 50%;
+// z-index: 2;
 }
 
 .search-input {
