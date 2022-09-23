@@ -52,7 +52,7 @@ function onSearch(event) {
                 console.log('onSearch ~ totalHits', totalHits)
                 // console.log('onSearch ~ totalHits', result.totalHits)
                 if (totalHits === 0) {
-                    Notiflix.Notify.info("Sorry, there are no images matching your search query. Please try again.")
+                    Notiflix.Notify.failure("Sorry, there are no images matching your search query. Please try again.")
                     clearGallery();
                     loadMoreBtn.hide();
                 } else {
